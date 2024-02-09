@@ -1,124 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head> 
-    </head>
-    <body>
-        <input placeholder="Search for Assignments"/>
-        <button>Group</button>
-        <button>Assignment</button>
-        <select>
-            <option>Edit Assignment Dates</option>
-            <option>Assignment Groups Weight</option>
-            <option>Gradescope 1.3</option>
-            <option>Commons Favorites</option>
-        </select>
-        <h2>ASSIGNMENTS 40% of Total Grades</h2>
-        <select>
-            <option><a href="Edit/screen.html">Edit</a> </option>
-            <option><a href="#">Speed Grader</a> </option>
-            <option><a href="#">Duplicate</a> </option>
-            <option><a href="#">Delete</a> </option>
-            <option><a href="#">Move To</a> </option>
-            <option><a href="#">Send To</a> </option>
-            <option><a href="#">Copy To</a> </option>
-            <option><a href="#">Share to Commons</a> </option>
-        </select>
-        <ul>
-            <li>
-                <a href="Edit/screen.html">A1 - ENV + HTML</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-            <li>
-                <a href="Edit/screen.html">A2 - CSS + BOOTSTRAP</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-            <li>
-                <a href="Edit/screen.html">A3 - JS + REACT</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-            <li>
-                <a href="Edit/screen.html">A4 - STATE + REDUX</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-            <li>
-                <a href="Edit/screen.html">A5 - NODE + SESSION</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-            <li>
-                <a href="Edit/screen.html">A6 - MONGO + MONGOOSE</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-        </ul>
-        <h2>QUIZZES 10% of Total Grades</h2>
-        <select>
-            <option><a href="#">Edit</a> </option>
-            <option><a href="#">Speed Grader</a> </option>
-            <option><a href="#">Duplicate</a> </option>
-            <option><a href="#">Delete</a> </option>
-            <option><a href="#">Move To</a> </option>
-            <option><a href="#">Send To</a> </option>
-            <option><a href="#">Copy To</a> </option>
-            <option><a href="#">Share to Commons</a> </option>
-        </select>
-        <ul>
-            <li>
-                <a href="#">Q1 - HTML</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-            <li>
-                <a href="#">A2 - CSS</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-            <li>
-                <a href="#">A3 - JS, ES6</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-            <li>
-                <a href="#">A4 - NODE</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-            <li>
-                <a href="#">A6 - MONGO</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-        </ul>
-        <h2>EXAMS 20% of Total Grades</h2>
-        <select>
-            <option><a href="#">Edit</a> </option>
-            <option><a href="#">Speed Grader</a> </option>
-            <option><a href="#">Duplicate</a> </option>
-            <option><a href="#">Delete</a> </option>
-            <option><a href="#">Move To</a> </option>
-            <option><a href="#">Send To</a> </option>
-            <option><a href="#">Copy To</a> </option>
-            <option><a href="#">Share to Commons</a> </option>
-        </select>
-        <ul>
-            <li>
-                <a href="#">Midterm</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-            <li>
-                <a href="#">Final</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-        </ul>
-        <h2>PROJECT 30% of Total Grades</h2>
-        <select>
-            <option><a href="#">Edit</a> </option>
-            <option><a href="#">Speed Grader</a> </option>
-            <option><a href="#">Duplicate</a> </option>
-            <option><a href="#">Delete</a> </option>
-            <option><a href="#">Move To</a> </option>
-            <option><a href="#">Send To</a> </option>
-            <option><a href="#">Copy To</a> </option>
-            <option><a href="#">Share to Commons</a> </option>
-        </select>
-        <ul>
-            <li>
-                <a href="#">Project</a> <br/>
-                <a href="#">Multiple Modules</a> Not Available yet.
-            </li>
-        </ul>
-    </body>
+
+<head><head>
+  <link rel="stylesheet" href="/Kanbas/styles.css" />
+  <link rel="stylesheet" href="/Kanbas/Navigation/index.css" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.css" rel="stylesheet" />
+  <link href="../../../libs/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../Navigation/index.css" />
+</head>
+</head>
+
+<body>
+  <div>
+    <h1 style="color: red; display: inline">CS5610.11744.202310</h1>
+    <h1 style="display: inline">> Grades</h1>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-4">
+      <input class="form-control m-2" placeholder="Search for Assignments" />
+    </div>
+    <div class="col d-flex justify-content-end">
+      <button class="btn btn-light border m-2"><i class="fa fa-plus"></i> Group </button>
+      <button class="btn btn-danger border m-2"><i class="fa fa-plus"></i>
+        Assignment</button>
+      <button class="btn btn-light border m-2"><i class="fa fa-ellipsis-v px-1"></i></button>
+    </div>
+  </div>
+  <hr>
+  <ul class="list-group wd-modules">
+    <li class="list-group-item">
+      <div>
+        <i class="fa fa-ellipsis-v m-3"></i> Assignments
+        <span class="float-end">
+          <button class="btn btn-light border">40% of Total</button>
+          <i class="fa fa-plus ms-2"></i>
+          <i class="fa fa-ellipsis-v ms-2"></i>
+        </span>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row g-0">
+            <div class="col-1"><i class="fa fa-ellipsis-v m-1"></i> <a href="edit/screen.html"><i
+                  class="fa fa-pencil-square text-success m-1 my-4" aria-hidden="true"></i></a></div>
+            <div class="col">
+              <a href="edit/screen.html" class="text-dark"><b class="m-1">A1 SETUP</b></a><br />
+              <small class="m-1">Week 0 - SETUP - Week starting on Monday Sept 5th Module |</small> <span
+                class="float-end my-2">
+                <i class="fa fa-check-circle text-success"></i>
+                <i class="fa fa-ellipsis-v ms-2"></i>
+              </span><br>
+              <small class="m-1"><b>Due </b>Sep 18, 2022 at 11:59pm | 100 pts</small>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row g-0">
+            <div class="col-1"><i class="fa fa-ellipsis-v m-1"></i><a href="edit/screen.html"> <i
+                  class="fa fa-pencil-square text-success m-1 my-4" aria-hidden="true"></i></a></div>
+            <div class="col">
+              <a href="edit/screen.html" class="text-dark"><b class="m-1">A2 HTML</b></a><br />
+              <small class="m-1">Week 0 - SETUP - Week starting on Monday Sept 5th Module |</small> <span
+                class="float-end my-2">
+                <i class="fa fa-check-circle text-success"></i>
+                <i class="fa fa-ellipsis-v ms-2"></i>
+              </span><br>
+              <small class="m-1"><b>Due </b>Sep 18, 2022 at 11:59pm | 100 pts</small>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row g-0">
+            <div class="col-1"><i class="fa fa-ellipsis-v m-1"></i><a href="edit/screen.html"> <i
+                  class="fa fa-pencil-square text-success m-1 my-4" aria-hidden="true"></i></a></div>
+            <div class="col">
+              <a href="edit/screen.html" class="text-dark"><b class="m-1">A3 CSS</b></a><br />
+              <small class="m-1">Week 0 - SETUP - Week starting on Monday Sept 5th Module |</small> <span
+                class="float-end my-2">
+                <i class="fa fa-check-circle text-success"></i>
+                <i class="fa fa-ellipsis-v ms-2"></i>
+              </span><br>
+              <small class="m-1"><b>Due </b>Sep 18, 2022 at 11:59pm | 100 pts</small>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row g-0">
+            <div class="col-1"><i class="fa fa-ellipsis-v m-1"></i><a href="edit/screen.html"> <i
+                  class="fa fa-pencil-square text-success m-1 my-4" aria-hidden="true"></i></a></div>
+            <div class="col">
+              <a href="edit/screen.html" class="text-dark"><b class="m-1">A4 BOOTSTRAP</b></a><br />
+              <small class="m-1">Week 0 - SETUP - Week starting on Monday Sept 5th Module |</small> <span
+                class="float-end my-2">
+                <i class="fa fa-check-circle text-success"></i>
+                <i class="fa fa-ellipsis-v ms-2"></i>
+              </span><br>
+              <small class="m-1"><b>Due </b>Sep 18, 2022 at 11:59pm | 100 pts</small>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row g-0">
+            <div class="col-1"><i class="fa fa-ellipsis-v m-1"></i><a href="Edit/screen.html"> <i
+                  class="fa fa-pencil-square text-success m-1 my-4" aria-hidden="true"></i></a></div>
+            <div class="col">
+              <a href="edit/screen.html" class="text-dark"><b class="m-1">A5 JAVA</b></a><br />
+              <small class="m-1">Week 0 - SETUP - Week starting on Monday Sept 5th Module |</small> <span
+                class="float-end my-2">
+                <i class="fa fa-check-circle text-success"></i>
+                <i class="fa fa-ellipsis-v ms-2"></i>
+              </span><br>
+              <small class="m-1"><b>Due </b>Sep 18, 2022 at 11:59pm | 100 pts</small>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row g-0">
+            <div class="col-1"><i class="fa fa-ellipsis-v m-1"></i><a href="edit/screen.html"> <i
+                  class="fa fa-pencil-square text-success m-1 my-4" aria-hidden="true"></i></a></div>
+            <div class="col">
+              <a href="edit/screen.html" class="text-dark"><b class="m-1">A6 REACT</b></a><br />
+              <small class="m-1">Week 0 - SETUP - Week starting on Monday Sept 5th Module |</small> <span
+                class="float-end my-2">
+                <i class="fa fa-check-circle text-success"></i>
+                <i class="fa fa-ellipsis-v ms-2"></i>
+              </span><br>
+              <small class="m-1"><b>Due </b>Sep 18, 2022 at 11:59pm | 100 pts</small>
+            </div>
+          </div>
+        </li>
+      </ul>
+  </ul>
+</body>
+
 </html>

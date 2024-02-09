@@ -1,142 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head> 
-    </head>
-    <body>
-        <select>
-            <option>Gradebook</option>
-            <option>Change Gradebook View</option>
-            <option>Traditional Gradebook</option>
-            <option>Individual Gradebook</option>
-        </select>
-        <button>Import</button>
-        <select  class="form-select">
-            <option>Export</option>
-            <option>Export Current Gradebook View</option>
-            <option>Export Entire Gradebook</option>
-        </select>
-        <button>Configure</button>
-        <br/>
-        <h2>Student Names</h2>
-        <input id="text-fields-search-student" placeholder="Search Students"/><br/>
-        <h2>Assignment Names</h2>
-        <input id="text-fields-search-assignment" placeholder="Search Assignments"/><br/>
-        <br/>
-        <button>Apply Filters</button>
-        <br/>
-        <table class="table table-striped" margin>
-                <thead>
-                  <tr>
-                    <th>Student Name</th>
-                    <th>A1 SETUP <br/> Out of 100</th>
-                    <th>A2 HTML <br/> Out of 100</th>
-                    <th>A3 CSS <br/> Out of 100</th>
-                    <th>A4 BOOTSTRAP <br/> Out of 100</th>
-                    <th>A5 JAVASCRIPT <br/> Out of 100</th>
-                    <th>A6 REACT <br/> Out of 100</th>
-                    <th>A7 REDUX <br/> Out of 100</th>
-                    <th>A8 NODE <br/> Out of 100</th>
-                    <th>A9 MONGO <br/> Out of 100</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Alice Wonderland</td>
-                        <td>100</td>
-                        <td><input value="95" max="100" min="0"/></td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td><input value="100" max="100" min="0" /></td>
-                        <td>100</td>
-                      </tr>
-                      <tr>
-                        <td>Princess Leia</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td><input value="88"  max="100" min="0"/></td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                      </tr>
-                      <tr>
-                        <td>Luke Skywalker</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td><input value="99" max="100" min="0" /></td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td><input value="85" max="100" min="0" /></td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                      </tr>
-                      <tr>
-                        <td>Hans Solo</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                      </tr>
-                      <tr>
-                        <td>Lando Carl</td>
-                        <td><input value="91" max="100" min="0" /></td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td><input value="89" max="100" min="0" /></td>
-                      </tr>
-                      <tr>
-                        <td>Boba Fet</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td><input value="93" max="100" min="0"/></td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                      </tr>
-                      <tr>
-                        <td>Darth Vader</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td><input value="90" max="100" min="0" /></td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td><input value="88" max="100" min="0" /></td>
-                        <td>100</td>
-                      </tr>
-                      <tr>
-                        <td>Obi-Wan Kenobi</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                      </tr>
-                </tbody>
-        </table>
-    </body>
+
+<head>
+  <link rel="stylesheet" href="/Kanbas/styles.css" />
+  <link rel="stylesheet" href="/Kanbas/Navigation/index.css" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.css" rel="stylesheet" />
+  <link href="../../../libs/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../Navigation/index.css" />
+</head>
+
+<body>
+  <div>
+    <h1 style="color: red; display: inline">CS5610.11744.202310</h1>
+    <h1 style="display: inline">> Grades</h1>
+  </div>
+  <hr />
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-light border  m-2">
+      <i class="fa fa-file"></i> Import
+    </button>
+    <button class="btn btn-light border  m-2">
+      <i class="fa fa-file"></i> Export <i class="fa fa-sort-desc"></i>
+    </button>
+    <button class="btn btn-light border  m-2">
+      <i class="fa fa-cog"></i>
+    </button>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-4">
+      <h2>Student Names</h2>
+      <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+        <input type="text" class="form-control" placeholder="Search Students" aria-describedby="basic-addon1" />
+        <span class="input-group-text"><i class="fa fa-sort-desc"></i></span>
+      </div>
+    </div>
+    <div class="col-4">
+      <h2>Assignment Names</h2>
+      <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+        <input type="text" class="form-control" placeholder="Search Assignments" aria-describedby="basic-addon1" />
+        <span class="input-group-text"><i class="fa fa-sort-desc"></i></span>
+      </div>
+    </div>
+  </div>
+  <br />
+  <button class="btn btn-light border ">
+    <i class="fa fa-filter"></i>Apply Filters
+  </button>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Student Name</th>
+          <th scope="col">
+            A1 SETUP <br />
+            Out of 100
+          </th>
+          <th scope="col">
+            A2 HTML <br />
+            Out of 100
+          </th>
+          <th scope="col">
+            A3 CSS <br />
+            Out of 100
+          </th>
+          <th scope="col">
+            A4 BOOTSTRAP <br />
+            Out of 100
+          </th>
+          <th scope="col">
+            A5 JAVASCRIPT <br />
+            Out of 100
+          </th>
+          <th scope="col">
+            A6 REACT <br />
+            Out of 100
+          </th>
+          <th scope="col">
+            A7 REDUX <br />
+            Out of 100
+          </th>
+          <th scope="col">
+            A8 NODE <br />
+            Out of 100
+          </th>
+          <th scope="col">
+            A9 MONGO <br />
+            Out of 100
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice Wonderland</td>
+          <td>100</td>
+          <td><input class="col-6" value="95" max="100" min="0" /></td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td><input class="col-6" value="100" max="100" min="0" /></td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Princess Leia</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td><input class="col-6" value="88" max="100" min="0" /></td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Luke Skywalker</td>
+          <td>100</td>
+          <td>100</td>
+          <td><input class="col-6" value="99" max="100" min="0" /></td>
+          <td>100</td>
+          <td>100</td>
+          <td><input class="col-6" value="85" max="100" min="0" /></td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Hans Solo</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Lando Carl</td>
+          <td><input class="col-6" value="91" max="100" min="0" /></td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td><input class="col-6" value="89" max="100" min="0" /></td>
+        </tr>
+        <tr>
+          <td>Boba Fet</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td><input class="col-6" value="93" max="100" min="0" /></td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Darth Vader</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td><input class="col-6" value="90" max="100" min="0" /></td>
+          <td>100</td>
+          <td>100</td>
+          <td><input class="col-6" value="88" max="100" min="0" /></td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Obi-Wan Kenobi</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
 </html>
