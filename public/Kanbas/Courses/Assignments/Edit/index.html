@@ -1,0 +1,121 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="/Kanbas/styles.css" />
+  <link rel="stylesheet" href="/Kanbas/Navigation/index.css" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../../../libs/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="stylesheet" href="../../Navigation/index.css" />
+</head>
+
+<body>
+  <div class="row g-0">
+    <div class="col-5">
+      <h3 class="text-danger">CS4550.1236213... > Assignments</h3>
+    </div>
+    <div class="col-4">
+      <h3>>A1 - ENV + HTML ...</h3>
+    </div>
+  </div>
+
+  <hr />
+  <div class="d-flex justify-content-end">
+    <p class="btn btn-no-border text-success"><i class="fa fa-check-circle"></i> Published </button>
+      <button><i class="fa fa-ellipsis-v px-1"></i></button>
+  </div>
+  <hr />
+  <h4 class="form-label">Assignment Name</h4>
+  <input class="form-control" value="A1 - ENV + HTML" />
+  <br />
+  <textarea class="form-control">This is the assignment description</textarea>
+  <br />
+  <div class="row">
+    <div class="col-4">
+      <label class="form-label d-flex justify-content-end mt-2" for="points">Points</label>
+    </div>
+    <div class="col-6">
+      <input id="points" value="100" class="form-control" />
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-4">
+      <label class="form-label d-flex justify-content-end mt-2">Assignment Group</label>
+    </div>
+    <div class="col-6">
+      <select class="form-select">
+        <option>ASSIGNMENT</option>
+        <option>QUIZ</option>
+        <option>EXAM</option>
+        <option>PROJECT</option>
+      </select>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-4">
+      <label class="form-label d-flex justify-content-end mt-2">Display Grade as</label>
+    </div>
+    <div class="col-6">
+      <select class="form-select">
+        <option>Percentage</option>
+      </select>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-4">
+
+    </div>
+    <div class="col-6">
+      <input type="checkbox" /><label class="form-label p-1 mr-10"> Do not count this assignment towards the final
+        grade</label>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-4">
+      <label class="form-label d-flex justify-content-end mt-2">Assign</label> <br />
+    </div>
+    <div class="col-6 border">
+      <label class="form-label">Assign to</label> <br />
+      <div class="border p-1">
+        <button class="btn btn-light border ">Everyone <i class="fa fa-times"></i></button>
+      </div>
+      <br />
+      <label class="form-label">Due</label><br />
+      <input class="form-control" type="date" value="21-01-2024" /><br />
+      <div class="row">
+        <div class="col">
+          <label class="form-label">Available from</label><br />
+          <input class="form-control" type="date" value="10-01-2024" />
+        </div>
+        <div class="col">
+          <label class="form-label">Until</label><br />
+          <input class="form-control" type="date" value="21-01-2024" />
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+  <br />
+  <br />
+  <hr />
+  <div class="row">
+    <div class="col">
+      <input type="checkbox" /><label class="form-label m-2">Notify users that this content has changed</label>
+    </div>
+    <div class="col">
+      <div class=" d-flex justify-content-end">
+        <button class="btn btn-light border m-1 "
+          onclick="document.location ='/Kanbas/Courses/Assignments/screen.html'">Cancel</button>
+        <button class="btn btn-danger m-1"
+          onclick="document.location ='/Kanbas/Courses/Assignments/screen.html'">Save</button>
+      </div>
+    </div>
+  </div>
+  <hr />
+</body>
+
+</html>
