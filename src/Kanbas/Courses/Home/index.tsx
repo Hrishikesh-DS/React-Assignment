@@ -25,8 +25,7 @@ function Home() {
         <div className="col-8">
           <Modules />
         </div>
-
-        <div className="col-4">
+        <div className="col-3 d-none d-xl-block">
           <h2>Course Status</h2>
           <ul className="list-unstyled">
             {links.map((link, index) => (
@@ -41,7 +40,9 @@ function Home() {
           <h3>To Do</h3>
           <hr />
           <div className="row">
-            <div className="col-1"><Bs1CircleFill className="text-danger" /></div>
+            <div className="col-1">
+              <Bs1CircleFill className="text-danger" />
+            </div>
             <div className="col-8">
               <p className="wd-text-red">Grade A1 - ENV + HTML</p>
             </div>
