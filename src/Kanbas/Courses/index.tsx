@@ -1,5 +1,5 @@
 import { courses } from "../../Kanbas/Database";
-import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useParams,useLocation } from "react-router-dom";
 import { HiMiniBars3 } from "react-icons/hi2";
 import CourseNavigation from "./Navigation";
 import "../Navigation/index.css"
@@ -12,9 +12,12 @@ import Grades from "./Grades";
 function Courses({ courses }: { courses: any[]; }) {
   const { courseId } = useParams();
   const course = courses.find((course) => course._id === courseId);
+  const loc = useLocation().pathname;
+  const pathParts = loc.split('/');
+  const lastPart = pathParts[pathParts.length - 1];
   return (
     <div>
-      <h1 className="header-red"><HiMiniBars3 /> Course {">"} {course?.name}</h1>
+      <h1 className="header-red"><HiMiniBars3 /> Course {">"} {course?.name} {" > "} {lastPart}</h1>
       <hr />
       <div className="row">
         <div className="col-2 d-none d-md-block">
