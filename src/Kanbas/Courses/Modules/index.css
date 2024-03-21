@@ -17,7 +17,7 @@
 }
 
 .wd-modules > li > div {
-  padding: 6px;
+  padding: 8px;
   border-left: 1px solid gray !important;
 }
 
@@ -41,4 +41,8 @@
 
 .wd-text-red {
     color: red;
+}
+
+.wd-style {
+  border-radius: 15%;
 }

@@ -2,17 +2,37 @@ import React from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { assignments } from "../../../Database";
 import { FaCheckCircle, FaEllipsisV } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { addAssignment, setAssignment, updateAssignment } from "./../reducer";
+import { KanbasState } from "../../../store";
+
 function AssignmentEditor() {
   const { assignmentId } = useParams();
-  const assignment = assignments.find(
-    (assignment) => assignment._id === assignmentId
-  );
+  // const assignment = db.assignments.find(
+  //     (assignment) => assignment._id === assignmentId);
   const { courseId } = useParams();
   const navigate = useNavigate();
   const handleSave = () => {
     console.log("Actually saving assignment TBD in later assignments");
     navigate(`/Kanbas/Courses/${courseId}/Assignments`);
   };
+  let flag = false;
+  const AssignmentList = useSelector(
+    (state: KanbasState) => state.assignmentsReducer.assignments
+  );
+  const assignment = useSelector(
+    (state: KanbasState) => state.assignmentsReducer.assignment
+  );
+  console.log(assignment);
+  if (assignment._id == "" || assignment._id == null) {
+    flag = true;
+  }
+  // const assignment = useSelector((state: KanbasState) => {
+  //    return assignmentId ? state.assignmentsReducer.assignments.find(a => a._id === assignmentId)
+  //                         : state.assignmentsReducer.assignment;});
+
+  const dispatch = useDispatch();
+
   return (
     <div>
       <div className="d-flex justify-content-end">
@@ -26,8 +46,19 @@ function AssignmentEditor() {
       </div>
       <hr />
       <h2>Assignment Name</h2>
-      <input value={assignment?.title} className="form-control mb-2" />
-
+      <input
+        value={assignment.title}
+        onChange={(e) =>
+          dispatch(
+            setAssignment({
+              ...assignment,
+              title: e.target.value,
+              course: courseId,
+            })
+          )
+        }
+        className="form-control mb-2"
+      />
       <textarea className="form-control">
         This is the assignment description
       </textarea>
@@ -132,12 +163,23 @@ function AssignmentEditor() {
         </div>
         <div className="col">
           <div className=" d-flex justify-content-end">
-            <button
-              onClick={handleSave}
+            <Link
+              onClick={() => {
+                if(flag){
+                  dispatch(addAssignment(assignment));
+                  console.log("adding")
+                }else{
+                dispatch(updateAssignment(assignment));
+                dispatch(setAssignment(""));
+                console.log("Updating")
+                }
+                
+              }}
+              to={`/Kanbas/Courses/${courseId}/Assignments`}
               className="btn btn-success m-2 float-end"
             >
               Save
-            </button>
+            </Link>
             <Link
               to={`/Kanbas/Courses/${courseId}/Assignments`}
               className="btn btn-danger float-end m-2"

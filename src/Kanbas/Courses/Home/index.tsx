@@ -22,7 +22,7 @@ function Home() {
   return (
     <div>
       <div className="row">
-        <div className="col-8">
+        <div className="col-12 col-md-12 col-lg-12 col-xl-8 col-xxl-9">
           <Modules />
         </div>
         <div className="col-3 d-none d-xl-block">

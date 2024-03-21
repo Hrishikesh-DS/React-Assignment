@@ -5,13 +5,50 @@ import {
   FaEdit,
   FaPlus,
 } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
-import { assignments } from "../../Database";
+import { Link, useNavigate, useParams } from "react-router-dom";
+
+import Modal from "./modal";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteAssignment, setAssignment } from "./reducer";
+import { KanbasState } from "../../store";
+
 function Assignments() {
   const { courseId } = useParams();
-  const assignmentList = assignments.filter(
+
+  const navigate = useNavigate();
+  const nav = () => {
+    navigate(
+      `/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`
+    )
+  };
+
+  const assignmentListTemp = useSelector(
+    (state: KanbasState) => state.assignmentsReducer.assignments
+  );
+  const assignmentList = assignmentListTemp.filter(
     (assignment) => assignment.course === courseId
   );
+
+  const assignment = useSelector(
+    (state: KanbasState) => state.assignmentsReducer.assignment
+  );
+
+  const dispatch = useDispatch();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [selectedAssignment, setSelectedAssignment] = useState("");
+
+  const openModal = (selectedAssignment: string) => {
+    setSelectedAssignment(selectedAssignment);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="form-control">
       <div className="row">
@@ -26,7 +63,7 @@ function Assignments() {
             <FaPlus className="m-1" />
             Group
           </button>
-          <button className="btn btn-danger border m-2">
+          <button className="btn btn-danger border m-2" onClick={nav}>
             <FaPlus className="m-1" />
             Assignment
           </button>
@@ -54,11 +91,29 @@ function Assignments() {
                 <FaEllipsisV className="me-2" />
                 <FaEdit className="text-success" />
                 <Link
-                  to={`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`}
+                      onClick={() => dispatch(setAssignment(assignment))}
+                      to={`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`}
                 >
                   {assignment.title}
                 </Link>
                 <span className="float-end">
+                  <button
+                    className="btn btn-danger m-1 p-1"
+                    onClick={() => openModal(assignment._id)}
+                  >
+                    Delete
+                  </button>
+                  <Modal
+                    isOpen={isOpen}
+                    onClose={closeModal}
+                    onConfirm={() => {
+                      dispatch(deleteAssignment(selectedAssignment));
+                      closeModal();
+                    }}
+                  >
+                    <h2>DELETE</h2>
+                    <p>Are you sure you want to remove the assignment?</p>
+                  </Modal>
                   <FaCheckCircle className="text-success" />
                   <FaEllipsisV className="ms-2" />
                 </span>
