@@ -168,6 +168,7 @@ function AssignmentEditor() {
                 if(flag){
                   dispatch(addAssignment(assignment));
                   console.log("adding")
+                  dispatch(setAssignment(""));
                 }else{
                 dispatch(updateAssignment(assignment));
                 dispatch(setAssignment(""));
