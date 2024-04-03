@@ -1,19 +1,42 @@
-import React, { useState } from "react";
 import "./index.css";
-import { modules } from "../../Database";
 import { FaEllipsisV, FaCheckCircle, FaPlusCircle } from "react-icons/fa";
 import { useParams } from "react-router";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addModule,
   deleteModule,
   updateModule,
   setModule,
+  setModules,
 } from "./reducer";
 import { KanbasState } from "../../store";
+import { findModulesForCourse, createModule, deleteModules } from "./client";
 
 function ModuleList() {
   const { courseId } = useParams();
+  useEffect(() => {
+    findModulesForCourse(courseId)
+      .then((modules) =>
+        dispatch(setModules(modules))
+      );
+  }, [courseId]);
+  const handleAddModule = () => {
+    createModule(courseId, module).then((module) => {
+      dispatch(addModule(module));
+    });
+  };
+  const handleDeleteModule = (moduleId: string) => {
+    deleteModules(moduleId).then((status) => {
+      dispatch(deleteModule(moduleId));
+    });
+  };
+  const handleUpdateModule = async () => {
+    const status = await updateModule(module);
+    dispatch(updateModule(module));
+  };
+
+
   const moduleList = useSelector((state: KanbasState) =>
     state.modulesReducer.modules);
   const module = useSelector((state: KanbasState) =>
@@ -35,7 +58,7 @@ function ModuleList() {
             </div>
             <div className="col-2">
               <button className="btn btn-success p-2 wd-style"
-                onClick={() => dispatch(addModule({ ...module, course: courseId }))}>
+                onClick={handleAddModule}>
                 Add</button>
             </div>
           </div>
@@ -47,7 +70,7 @@ function ModuleList() {
             </div>
             <div className="col-2">
               <button className="btn btn-primary p-2 wd-style"
-                onClick={() => dispatch(updateModule(module))}>
+                onClick={handleUpdateModule}>
                 Update
               </button>
 
@@ -72,7 +95,7 @@ function ModuleList() {
                   </button>
 
                   <button className="btn btn-danger wd-style px-1 me-2"
-                    onClick={() => dispatch(deleteModule(module._id))}>
+                    onClick={() =>  handleDeleteModule(module._id)}>
                     Delete
                   </button>
                   <FaCheckCircle className="text-success" />

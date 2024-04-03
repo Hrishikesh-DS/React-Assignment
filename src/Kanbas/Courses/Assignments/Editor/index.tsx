@@ -1,20 +1,31 @@
 import React from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
 import { assignments } from "../../../Database";
 import { FaCheckCircle, FaEllipsisV } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { addAssignment, setAssignment, updateAssignment } from "./../reducer";
 import { KanbasState } from "../../../store";
+import { useEffect } from "react";
+import * as client from "../client";
 
 function AssignmentEditor() {
   const { assignmentId } = useParams();
+  let newAssignment = false;
   // const assignment = db.assignments.find(
   //     (assignment) => assignment._id === assignmentId);
+  const { pathname } = useLocation();
+  if (pathname.includes("newAssignment")) {
+    newAssignment = true;
+  }
   const { courseId } = useParams();
   const navigate = useNavigate();
-  const handleSave = () => {
-    console.log("Actually saving assignment TBD in later assignments");
-    navigate(`/Kanbas/Courses/${courseId}/Assignments`);
+  const handleSave = async () => {
+    const status = await client.createAssignment(courseId, assignment);
+    dispatch(setAssignment({
+      title: "New Assignment",
+      description: "New Description",
+      course: courseId,
+    }));
   };
   let flag = false;
   const AssignmentList = useSelector(
@@ -27,11 +38,30 @@ function AssignmentEditor() {
   if (assignment._id == "" || assignment._id == null) {
     flag = true;
   }
-  // const assignment = useSelector((state: KanbasState) => {
-  //    return assignmentId ? state.assignmentsReducer.assignments.find(a => a._id === assignmentId)
-  //                         : state.assignmentsReducer.assignment;});
-
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (assignmentId !== "newAssignment") {
+      const assignment = AssignmentList.find(
+        (assignment) => assignment._id === assignmentId);
+      if (assignment) {
+        dispatch(setAssignment(assignment));
+      }
+    }
+    else {
+      dispatch(setAssignment({
+        assignment
+      }));
+    }
+  }, [assignmentId, AssignmentList, dispatch])
+
+  const handleUpdateAssignment = async () => {
+    const status = await client.updateAssignment(assignment);
+    if (status === 200) { }
+    dispatch(updateAssignment(assignment));
+  }
+
+
+
 
   return (
     <div>
@@ -165,16 +195,15 @@ function AssignmentEditor() {
           <div className=" d-flex justify-content-end">
             <Link
               onClick={() => {
-                if(flag){
-                  dispatch(addAssignment(assignment));
-                  console.log("adding")
+                if (flag) {
+                  handleSave(); // Call handleSave function
+                  console.log("adding");
                   dispatch(setAssignment(""));
-                }else{
-                dispatch(updateAssignment(assignment));
-                dispatch(setAssignment(""));
-                console.log("Updating")
+                } else {
+                  handleUpdateAssignment(); // Call handleUpdateAssignment function
+                  dispatch(setAssignment(""));
+                  console.log("Updating");
                 }
-                
               }}
               to={`/Kanbas/Courses/${courseId}/Assignments`}
               className="btn btn-success m-2 float-end"

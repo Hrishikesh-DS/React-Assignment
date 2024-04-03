@@ -10,32 +10,43 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Modal from "./modal";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteAssignment, setAssignment } from "./reducer";
+import { deleteAssignment, setAssignment, setAssignments } from "./reducer";
+import { useEffect } from "react";
+import * as client from "./client";
 import { KanbasState } from "../../store";
 
 function Assignments() {
   const { courseId } = useParams();
 
   const navigate = useNavigate();
-  const nav = () => {
-    navigate(
-      `/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`
-    )
-  };
 
-  const assignmentListTemp = useSelector(
+
+  const assignmentList = useSelector(
     (state: KanbasState) => state.assignmentsReducer.assignments
   );
-  const assignmentList = assignmentListTemp.filter(
-    (assignment) => assignment.course === courseId
-  );
-
   const assignment = useSelector(
     (state: KanbasState) => state.assignmentsReducer.assignment
   );
-
   const dispatch = useDispatch();
+    console.log(assignmentList);
 
+    useEffect(() => {
+      client.findAssignmentsForCourse(courseId)
+          .then((assignments) => {
+              dispatch(setAssignments(assignments));
+          });
+  }, [courseId, dispatch]);
+  const handleDeleteAssignment = (assignmentId: string) => {
+      client.deleteAssignment(assignmentId).then(() => {
+          dispatch(deleteAssignment(assignmentId));
+      });
+  }
+  const nav = () => {
+    console.log("Click registered "+assignment._id);
+    navigate(
+      `/Kanbas/Courses/${courseId}/Assignments/newAssignment}`
+    )
+  };
   const [isOpen, setIsOpen] = useState(false);
 
   const [selectedAssignment, setSelectedAssignment] = useState("");
@@ -107,7 +118,7 @@ function Assignments() {
                     isOpen={isOpen}
                     onClose={closeModal}
                     onConfirm={() => {
-                      dispatch(deleteAssignment(selectedAssignment));
+                      handleDeleteAssignment(selectedAssignment);
                       closeModal();
                     }}
                   >
@@ -126,3 +137,5 @@ function Assignments() {
   );
 }
 export default Assignments;
+
+
