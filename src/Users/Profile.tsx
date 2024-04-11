@@ -10,9 +10,23 @@ export default function Profile() {
     firstName: "", lastName: "", dob: "", email: "", role: "USER"
   });
   const navigate = useNavigate();
+  // const fetchProfile = async () => {
+  //   const account = await client.profile();
+  //   setProfile(account);
+  // };
   const fetchProfile = async () => {
-    const account = await client.profile();
-    setProfile(account);
+    try {
+      const account = await client.profile();
+      setProfile(account);
+    } catch (error: any) {
+      if (error.response && error.response.status === 401) {
+        // Redirect the user to the sign-in page if not authenticated
+        navigate("/Kanbas/Account/Signin");
+      } else {
+        // Handle other errors
+        console.error("Error fetching profile:", error);
+      }
+    }
   };
   const save = async () => {
     await client.updateUser(profile);
