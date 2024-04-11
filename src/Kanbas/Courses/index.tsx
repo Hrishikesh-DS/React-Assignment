@@ -24,10 +24,9 @@ function Courses() {
   const findCourseById = async (courseId?: string) => {
     try {
       const response = await axios.get(
-        `${COURSES_API}?courseId=${courseId}`
+        `${COURSES_API}/${courseId}`
       );
-      setCourse(response.data);
-      console.log("CourseSet:"+course)
+      setCourse(response.data)
     } catch (err) {
       console.log(err);
     }
