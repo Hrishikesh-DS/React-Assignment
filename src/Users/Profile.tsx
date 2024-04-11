@@ -29,7 +29,17 @@ export default function Profile() {
     }
   };
   const save = async () => {
-    await client.updateUser(profile);
+    try {
+      await client.updateUser(profile);
+    } catch (error: any) {
+      if (error.response && error.response.status === 401) {
+        // Redirect the user to the sign-in page if not authenticated
+        navigate("/Kanbas/Account/Signin");
+      } else {
+        // Handle other errors
+        console.error("Error updating profile:", error);
+      }
+    }
   };
   const signout = async () => {
     await client.signout();
