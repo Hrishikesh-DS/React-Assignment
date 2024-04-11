@@ -3,6 +3,7 @@ import { FaEllipsisV, FaCheckCircle, FaPlusCircle } from "react-icons/fa";
 import { useParams } from "react-router";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import * as client from "./client";
 import {
   addModule,
   deleteModule,
@@ -15,26 +16,42 @@ import { findModulesForCourse, createModule, deleteModules } from "./client";
 
 function ModuleList() {
   const { courseId } = useParams();
-  useEffect(() => {
-    findModulesForCourse(courseId)
-      .then((modules) =>
-        dispatch(setModules(modules))
-      );
-  }, [courseId]);
-  const handleAddModule = () => {
-    createModule(courseId, module).then((module) => {
-      dispatch(addModule(module));
-    });
+  console.log("courseID "+courseId);
+
+  const fetchModules = async () => {
+    const modules = await client.findModulesForCourse(courseId);
+    dispatch(setModules(modules));
   };
-  const handleDeleteModule = (moduleId: string) => {
-    deleteModules(moduleId).then((status) => {
+  useEffect(() => { fetchModules(); }, [courseId]);
+
+  const handleAddModule = async () => {
+    try {
+      const newModule = await client.createModule(courseId, module);
+      dispatch(addModule(newModule));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleDeleteModule = async (moduleId: string) => {
+    try {
+      await client.deleteModules(moduleId);
       dispatch(deleteModule(moduleId));
-    });
+    } catch (err) {
+      console.log(err);
+    }
   };
   const handleUpdateModule = async () => {
-    const status = await updateModule(module);
-    dispatch(updateModule(module));
+    try {
+      const status = await client.updateModule(module);
+      dispatch(updateModule(module)); 
+    } catch (err) {
+      console.log(err);
+    }
   };
+  // const handleUpdateModule = async () => {
+  //   const status = await updateModule(module);
+  //   dispatch(updateModule(module));
+  // };
 
 
   const moduleList = useSelector((state: KanbasState) =>
@@ -95,7 +112,7 @@ function ModuleList() {
                   </button>
 
                   <button className="btn btn-danger wd-style px-1 me-2"
-                    onClick={() =>  handleDeleteModule(module._id)}>
+                    onClick={() => handleDeleteModule(module._id)}>
                     Delete
                   </button>
                   <FaCheckCircle className="text-success" />

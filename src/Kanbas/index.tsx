@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import store from "./store";
 import { Provider } from "react-redux";
+import Account from "./Account";
 
 function Kanbas() {
 
@@ -23,7 +24,7 @@ function Kanbas() {
   }, []);
 
   const [course, setCourse] = useState({
-    _id: "0",
+    id: new Date().getTime(),
     name: "New Course",
     number: "New Number",
     startDate: "2023-09-10",
@@ -43,13 +44,13 @@ function Kanbas() {
   };
   const updateCourse = async () => {
     const response = await axios.put(
-      `${COURSES_API}/${course._id}`,
+      `${COURSES_API}/${course.id}`,
       course
     );
 
     setCourses(
       coursesInfo.map((c) => {
-        if (c._id === course._id) {
+        if (c.id === course.id) {
           return course;
         } else {
           return c;
@@ -68,7 +69,7 @@ function Kanbas() {
         <div style={{ flexGrow: 1 }}>
           <Routes>
             <Route path="/" element={<Navigate to="Dashboard" />} />
-            <Route path="Account" element={<h1>Account</h1>} />
+            <Route path="/Account/*" element={<Account />} />
             <Route path="Dashboard" element={
               <Dashboard
                 courses={coursesInfo}

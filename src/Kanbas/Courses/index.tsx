@@ -15,11 +15,22 @@ function Courses() {
   const API_BASE = process.env.REACT_APP_API_BASE;
   const COURSES_API = `${API_BASE}/api/courses`;
   const [course, setCourse] = useState<any>({ _id: "" });
+  // const findCourseById = async (courseId?: string) => {
+  //   const response = await axios.get(
+  //     `${COURSES_API}/${courseId}`
+  //   );
+  //   setCourse(response.data);
+  // };
   const findCourseById = async (courseId?: string) => {
-    const response = await axios.get(
-      `${COURSES_API}/${courseId}`
-    );
-    setCourse(response.data);
+    try {
+      const response = await axios.get(
+        `${COURSES_API}?courseId=${courseId}`
+      );
+      setCourse(response.data);
+      console.log("CourseSet:"+course)
+    } catch (err) {
+      console.log(err);
+    }
   };
 
 
